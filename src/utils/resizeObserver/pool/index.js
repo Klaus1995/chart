@@ -29,6 +29,7 @@ export function remove(id) {
 }
 
 export default {
+  create,
   get,
   remove,
 }

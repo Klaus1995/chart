@@ -1,14 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import echarts from 'echarts';
-import resizeObserver from '@/utils/resizeObserver';
-
-console.log(resizeObserver);
+import resizeObserver from 'src/utils/resizeObserver';
 
 export default function Chart() {
     const container = useRef(null);
 
     useEffect(() => {
-        var myChart = echarts.init(container.current);
+        const myChart = echarts.init(container.current);
         var option = {
             title: {
                 text: 'ECharts 入门示例'
@@ -29,12 +27,17 @@ export default function Chart() {
         };
         myChart.setOption(option);
 
+        resizeObserver.add(container.current, (params) => {
+            myChart.resize(params);
+        });
+
         return () => {
             myChart.dispose();
+            resizeObserver.clear(container.current);
         };
-    });
+    }, []);
 
     return (
-        <div ref={container}></div>
+        <div ref={container} style={{ width: '100%', height: '100%' }}></div>
     );
 }

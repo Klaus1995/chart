@@ -1,9 +1,11 @@
+import debounce from './debounce';
 import './index.css';
 
 class Observer {
   constructor(id, element) {
     this.id = id;
     this.listeners = [];
+    this.trigger = this.trigger.bind(this);
     this.observerElement = this.addElement(element);
   }
 
@@ -33,7 +35,7 @@ class Observer {
     observerElement.setAttribute('tabindex', '-1');
     observerElement.setAttribute('class', 'resize-observer');
     observerElement.onload = () => {
-      observerElement.contentDocument.defaultView.addEventListener('resize', this.trigger);
+      observerElement.contentDocument.defaultView.addEventListener('resize', debounce(this.trigger, 500));
       // 立马触发
       this.trigger();
     };
@@ -45,6 +47,7 @@ class Observer {
   }
 
   trigger() {
+    console.log('trigger');
     this.listeners.forEach(listener => {
       if (typeof listener === 'function') {
         const params = {
