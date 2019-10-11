@@ -8,20 +8,20 @@ export default function useChart(container, { theme }) {
 
   useEffect(() => {
     // 注册
-    chart.current = echarts.init(container.current, theme);
+    const myChart = echarts.init(container.current, theme);
+    chart.current = myChart;
 
     // 绑定resize事件
     resizeObserver.add(container.current, (params) => {
-      chart.current.resize(params);
+      myChart.resize(params);
     });
 
     // 注销
     return () => {
-      chart.current.dispose();
-      chart.current = null;
-      resizeObserver.clear(container.current);
+      myChart.dispose();
+      resizeObserver.clear(myChart);
     };
-  }, [theme]);
+  }, [container, theme]);
 
   return chart;
 }

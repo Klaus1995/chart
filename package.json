@@ -68,7 +68,9 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "parser": "babel-eslint",
+    "extends": "react-app",
+    "plugins": ["react-hooks"]
   },
   "browserslist": {
     "production": [

@@ -5,5 +5,5 @@ export default function useOption(chart, option) {
     if (chart.current) {
       chart.current.setOption(option);
     }
-  }, [option]);
+  }, [chart, option]);
 }
