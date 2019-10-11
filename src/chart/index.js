@@ -1,10 +1,13 @@
-import React, {useState, useRef,useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import echarts from 'echarts';
+import resizeObserver from '@/utils/resizeObserver';
 
-export default function Chart (){
+console.log(resizeObserver);
+
+export default function Chart() {
     const container = useRef(null);
 
-    useEffect(()=>{
+    useEffect(() => {
         var myChart = echarts.init(container.current);
         var option = {
             title: {
@@ -12,10 +15,10 @@ export default function Chart (){
             },
             tooltip: {},
             legend: {
-                data:['销量']
+                data: ['销量']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
             },
             yAxis: {},
             series: [{
@@ -26,12 +29,12 @@ export default function Chart (){
         };
         myChart.setOption(option);
 
-        return ()=>{
+        return () => {
             myChart.dispose();
         };
     });
 
     return (
-        <div ref={container} style={{height:500}}></div>
+        <div ref={container}></div>
     );
 }
