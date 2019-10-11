@@ -1,12 +1,10 @@
 import Observer from './Observer';
-
-// id计数器
-let count = 1;
+import { createRandomStr } from '@/utils'
 
 const observerPool = Object.create(null);
 
 export function create(element) {
-  const id = count++;
+  const id = createRandomStr();
   const observer = new Observer(id, element);
   observerPool[id] = observer;
   return observer;
