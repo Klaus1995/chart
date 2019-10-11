@@ -10,7 +10,7 @@ const OBSERVER_ID_KEY = 'observerid';
  */
 export function add(element, cb) {
   if (!element instanceof HTMLElement) {
-    throw Error('element参数必须为HTML元素');
+    throw new TypeError('element参数必须为HTML元素');
   }
 
   let observerId = element.dataset[OBSERVER_ID_KEY];
@@ -35,7 +35,7 @@ export function add(element, cb) {
  */
 export function remove(element, cb) {
   if (!element instanceof HTMLElement) {
-    throw Error('element参数必须为HTML元素');
+    throw new TypeError('element参数必须为HTML元素');
   }
 
   const observerId = element.dataset[OBSERVER_ID_KEY];
@@ -58,7 +58,7 @@ export function remove(element, cb) {
  */
 export function clear(element) {
   if (!element instanceof HTMLElement) {
-    throw Error('element参数必须为HTML元素');
+    throw new TypeError('element参数必须为HTML元素');
   }
 
   const observerId = element.dataset[OBSERVER_ID_KEY];
