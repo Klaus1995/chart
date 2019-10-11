@@ -7,16 +7,18 @@ export default function useChart(container, { theme }) {
   const chart = useRef(null);
 
   useEffect(() => {
-    const instance = echarts.init(container.current, theme);
+    // 注册
+    chart.current = echarts.init(container.current, theme);
 
-    chart.current = instance;
-
+    // 绑定resize事件
     resizeObserver.add(container.current, (params) => {
-      instance.resize(params);
+      chart.current.resize(params);
     });
 
+    // 注销
     return () => {
-      instance.dispose();
+      chart.current.dispose();
+      chart.current = null;
       resizeObserver.clear(container.current);
     };
   }, [theme]);
