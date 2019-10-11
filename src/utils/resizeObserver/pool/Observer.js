@@ -47,7 +47,6 @@ class Observer {
   }
 
   trigger() {
-    console.log('trigger');
     this.listeners.forEach(listener => {
       if (typeof listener === 'function') {
         const params = {
