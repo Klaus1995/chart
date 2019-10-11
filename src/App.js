@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Chart from './chart';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(5);
 
   return (
     <div style={{ height: '100vh' }}>
-      <button onClick={() => setCount(count + 1)} >+1</button>
-      <div style={{ height: 'calc(100% - 25px)' }}>
+      <button onClick={() => setCount(count + 1)} >height+100</button>
+      <button onClick={() => setCount(count - 1)} >height-100</button>
+      <div style={{ height: count * 100 }}>
         <Chart count={count} />
       </div>
     </div>

@@ -35,7 +35,7 @@ class Observer {
     observerElement.setAttribute('tabindex', '-1');
     observerElement.setAttribute('class', 'resize-observer');
     observerElement.onload = () => {
-      observerElement.contentDocument.defaultView.addEventListener('resize', debounce(this.trigger, 500));
+      observerElement.contentDocument.defaultView.addEventListener('resize', debounce(this.trigger, 200));
       // 立马触发
       this.trigger();
     };
